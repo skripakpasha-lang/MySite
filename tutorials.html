@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна — FrameworksHub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #111;
+            color: #fff;
+            padding: 10px 0;
+            z-index: 1000;
+            transition: top 0.3s ease;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        nav ul li a.active {
+            font-weight: bold;
+            border-bottom: 2px solid #fff;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+		        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        button {
+            background: #1e90ff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #0d6efd;
+        }
+        .search-input {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: none;
+            width: 250px;
+        }
+        #visit-counter {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        section {
+            margin-top: 120px;
+            padding: 20px 0;
+        }
+        h2 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        p, li {
+            color: #ddd;
+            line-height: 1.8;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            background: #2a2a2a;
+        }
+        .gallery-item img {
+            width: 100%;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+        .modal .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+        }
+        body {
+            background-color: #121212;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+     <div class="container">
+    <div class="header-top">
+      <div class="logo">FrameworksHub</div>
+      <input type="text" id="search-input" class="search-input" placeholder="Пошук по сайту...">
+      <div>
+        <span id="visit-counter">Ви відвідали цей сайт: 0 разів</span>
+        <span id="user-counter" style="color:white; margin-left:10px;">Зареєстрованих користувачів: 0</div>
+      </div>
+	  </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="history.html">Історія</a></li>
+                <li><a class="active" href="tutorials.html">Уроки</a></li>
+                <li><a href="contacts.html">Контакти</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<br><Br><Br>
+<section class="container">
+    <h2>Уроки з фреймворків</h2>
+    <p style="font-size:18px; margin-bottom:20px;">
+        У цьому розділі ви знайдете детальні уроки про те, як користуватися фреймворками, що вони вміють і як правильно їх застосовувати у проєктах.
+    </p>
+
+    <div class="tutorial-grid">
+        <div class="card searchable">
+            <h3>React — Основи</h3>
+            <p>
+                React дозволяє створювати динамічні інтерфейси користувача за допомогою компонентів. 
+                У цьому уроці ми розглянемо створення першого компонента, props, state та JSX.
+            </p>
+        </div>
+
+        <div class="card searchable">
+            <h3>Vue.js — Основи</h3>
+            <p>
+                Vue.js простий у вивченні та чудово підходить для маленьких і середніх проєктів. 
+                Урок включає роботу з компонентами, директивами та реактивністю даних.
+            </p>
+        </div>
+
+        <div class="card searchable">
+            <h3>Angular — Початок</h3>
+            <p>
+                Angular — потужний фреймворк для створення великих застосунків. 
+                Ви навчитесь створювати модулі, компоненти, сервіси та маршрутизацію.
+            </p>
+        </div>
+
+        <div class="card searchable">
+            <h3>Django — Backend</h3>
+            <p>
+                Django дозволяє швидко створювати веб-застосунки на Python. 
+                Урок охоплює налаштування проєкту, моделі, шаблони та маршрути.
+            </p>
+        </div>
+
+        <div class="card searchable">
+            <h3>Laravel — PHP</h3>
+            <p>
+                Laravel спрощує роботу з PHP і базами даних. 
+                Урок містить роботу з маршрутами, контролерами, моделями та шаблонами Blade.
+            </p>
+        </div>
+
+        <div class="card searchable">
+            <h3>Flutter — Мобільні додатки</h3>
+            <p>
+                Flutter дозволяє створювати кросплатформенні мобільні додатки. 
+                Ви навчитесь створювати перший додаток, компоненти UI та роботу з станом.
+            </p>
+        </div>
+    </div>
+
+    <section style="margin-top:40px;">
+        <h2>Рекомендації для початківців</h2>
+        <ul style="padding-left:20px; line-height:1.8;">
+            <li>Вивчайте один фреймворк за раз, не намагайтесь вивчити все відразу.</li>
+            <li>Практикуйтесь на маленьких проєктах.</li>
+            <li>Читайте офіційну документацію та приклади коду.</li>
+            <li>Не бійтеся експериментувати та створювати власні компоненти.</li>
+        </ul>
+    </section>
+
+</section>
+<script>
+    // Згортаюче меню
+    const header = document.querySelector('header');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if(currentScroll > lastScroll && currentScroll > 100){
+            header.style.top = '-120px';
+        } else {
+            header.style.top = '0';
+        }
+        lastScroll = currentScroll;
+    });
+
+    // Пошук по сторінці
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        document.querySelectorAll('.searchable').forEach(el => {
+            el.style.display = el.textContent.toLowerCase().includes(query) ? 'block' : 'none';
+        });
+    });
+
+  function registerUser(name, email, avatar){
+    if(!name || !email) return;
+
+    // отримуємо існуючий масив користувачів або створюємо новий
+    let users = JSON.parse(localStorage.getItem('allUsers')) || [];
+
+    // перевіряємо, чи користувач вже існує по email
+    if(users.some(u => u.email === email)){
+        alert('Цей користувач вже зареєстрований!');
+        return;
+    }
+
+    // додаємо нового користувача
+    const user = {name, email, avatar};
+    users.push(user);
+    localStorage.setItem('allUsers', JSON.stringify(users));
+
+    // зберігаємо поточний профіль
+    localStorage.setItem('user', JSON.stringify(user));
+    showProfile();
+    updateUserCounter();
+}
+
+// ===================== Лічильник користувачів =====================
+function updateUserCounter(){
+    const counter = document.getElementById('user-counter');
+    const users = JSON.parse(localStorage.getItem('allUsers')) || [];
+    if(counter){
+        counter.textContent = `Зареєстрованих користувачів: ${users.length}`;
+    }
+}
+
+// Викликаємо при завантаженні сторінки
+updateUserCounter();
+
+
+    // Профіль користувача
+    const userInfo = document.getElementById('user-info');
+
+    function showProfile() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user){
+            userInfo.innerHTML = ` | ${user.name} <img class="avatar" src="${user.avatar || 'https://via.placeholder.com/35'}" alt="Аватар"> <button id="logout-btn">Вийти</button>`;
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                localStorage.removeItem('user');
+                showProfile();
+            });
+        } else {
+            userInfo.innerHTML = '';
+        }
+    }
+
+    showProfile();
+</script>
+<footer>
+    © 2025 FrameworksHub — Уроки з фреймворків
+</footer>
+
+</body>
+</html>

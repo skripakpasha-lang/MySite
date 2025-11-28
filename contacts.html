@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакти та реєстрація — FrameworksHub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #121212;
+            font-family: Arial, sans-serif;
+            color: #ddd;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #111;
+            color: #fff;
+            padding: 10px 0;
+            z-index: 1000;
+            transition: top 0.3s ease;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        nav ul li a.active {
+            font-weight: bold;
+            border-bottom: 2px solid #fff;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .search-input {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: none;
+            width: 250px;
+        }
+        #visit-counter, #user-info, #user-counter {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        section {
+            margin-top: 120px;
+            padding: 20px 0;
+        }
+        form {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: none;
+        }
+        form button {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background-color: #ff6600;
+            color: #fff;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        form button:hover {
+            background-color: #e65c00;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="header-top">
+            <div class="logo">FrameworksHub</div>
+            <input type="text" id="search-input" class="search-input" placeholder="Пошук по сайту...">
+            <div>
+                <span id="visit-counter">Ви відвідали цей сайт: 0 разів</span>
+                <span id="user-info"></span>
+                <span id="user-counter">Зареєстрованих користувачів: 0</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="history.html">Історія</a></li>
+                <li><a href="tutorials.html">Уроки</a></li>
+                <li><a class="active" href="contacts.html">Контакти</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="container searchable">
+    <h2>Реєстрація користувача</h2>
+    <form id="register-form">
+        <label>Ім'я:</label>
+        <input type="text" name="name" placeholder="Ваше ім'я" required>
+        <label>Email:</label>
+        <input type="email" name="email" placeholder="Ваш email" required>
+        <label>Аватар (URL):</label>
+        <input type="text" name="avatar" placeholder="https://...">
+        <button type="submit">Зареєструватися</button>
+    </form>
+
+    <h2>Контакти</h2>
+    <p>Якщо у вас є питання або пропозиції, пишіть нам на email: <a href="mailto:info@frameworkshub.com">info@frameworkshub.com</a></p>
+    <p>Також можна зв'язатися через соцмережі:</p>
+    <ul>
+        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+        <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+        <li><a href="https://vk.com" target="_blank">VK</a></li>
+    </ul>
+</section>
+
+<footer>
+    © 2025 FrameworksHub — Усе про фреймворки
+</footer>
+
+<script src="profile.js"></script>
+<script>
+    // ===================== Реєстрація користувачів =====================
+    const form = document.getElementById('register-form');
+    if(form){
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = form.name.value.trim();
+            const email = form.email.value.trim();
+            const avatar = form.avatar.value.trim();
+
+            if(!name || !email){
+                alert('Заповніть ім\'я та email!');
+                return;
+            }
+            if(!email.includes('@')){
+                alert('Введіть правильний email!');
+                return;
+            }
+
+            // Отримуємо масив усіх користувачів
+            let users = JSON.parse(localStorage.getItem('allUsers')) || [];
+
+            // Перевірка на наявність користувача
+            if(users.some(u => u.email === email)){
+                alert('Користувач з таким email вже існує!');
+                return;
+            }
+
+            const user = {name, email, avatar};
+            users.push(user);
+            localStorage.setItem('allUsers', JSON.stringify(users));
+            localStorage.setItem('user', JSON.stringify(user));
+
+            // Оновлюємо профіль і лічильник
+            showProfile();
+            const counter = document.getElementById('user-counter');
+            counter.textContent = `Зареєстрованих користувачів: ${users.length}`;
+
+            alert('Реєстрація успішна! Профіль створено.');
+            form.reset();
+        });
+    }
+</script>
+
+</body>
+</html>
